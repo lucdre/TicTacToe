@@ -29,13 +29,44 @@ public class Partida {
 	
 	/**
 	 * Busca si hay 3 en raya
-	 * @param x - Alto del tablero
-	 * @param y - Ancho del tablero
 	 * @return True - Hay 3 en raya, False - No hay 3 en raya 
 	 */
-	public boolean buscarTresEnRaya(int x, int y) {
-				
-		return true;	
+	public boolean buscarGanador() {
+
+		Casilla[][] tab = tablero.getTablero();
+		
+		// HORIZONTAL DERECHA-IZQUIERDA
+		if (tab[0][0] == tab[0][0 + 1])
+			if (tab[0][0] == tab[0][0 + 2])
+				return true;
+		// VERTICAL ARRIBA-ABAJO
+		if (tab[0][0] == tab[0 + 1][0])
+			if (tab[0][0] == tab[0 + 2][0])
+				return true;
+		// DIAGONAL ARRIBA-ABAJO
+		if (tab[0][0] == tab[0 + 1][0 + 1])
+			if (tab[0][0] == tab[0 + 2][0 + 2])
+				return true;
+
+		return false;
+	}
+	
+	/**
+	 * Busca si la partida ha empatado (tablero lleno)
+	 * @return True - ha empatado, False - No ha empatado
+	 */
+	public boolean buscarEmpate(){
+		
+		Casilla[][] tab = tablero.getTablero();
+		int tam = tab.length;
+		
+		for (int i = 0; i < tam; i++)
+			for (int j = 0; j < tam; j++)
+				if (tab[i][j] == Casilla.LIBRE)
+					return false;
+
+		return true;
+		
 	}
 	
 	/**
@@ -44,25 +75,12 @@ public class Partida {
 	public void iniciar(){
 		Random rnd = new Random();
 		turno = rnd.nextBoolean();
-		if(turno)
-			fichaTurno = Ficha.CIRCULO;
-		else
-			fichaTurno = Ficha.CRUZ;
+		cambiarTurno();
 		
 		jugando = true;
 		
 		tablero.mostrarTablero();
 		
-		while(jugando){
-			for (int i = 0; i < 3; i++) {
-				for (int j = 0; j < 3; j++) {
-					colocarFicha(i, j);
-				}
-			}
-			jugando = false;
-		}
-		
-		System.out.println("Se ha acabado la partida");
 	}
 	
 	/**
@@ -78,7 +96,7 @@ public class Partida {
 				tablero.getTablero()[x][y] = Casilla.OCUPADA_CRUZ;
 			cambiarTurno();
 		}else{
-			System.out.println("no se ha hecho nada");
+			System.out.println("NO PUEDES COLOCAR LA FICHA AHÍ");
 		}
 		
 		tablero.mostrarTablero();
