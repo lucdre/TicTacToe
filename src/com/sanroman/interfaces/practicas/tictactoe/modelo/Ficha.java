@@ -8,6 +8,6 @@ package com.sanroman.interfaces.practicas.tictactoe.modelo;
  *
  */
 public enum Ficha {
-	CIRCULO, CRUZ, SINCOLOR
+	CIRCULO, CRUZ
 }
 

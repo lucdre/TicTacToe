@@ -8,5 +8,5 @@ package com.sanroman.interfaces.practicas.tictactoe.modelo;
  *
  */
 public enum Casilla {
-	LIBRE, OCUPADA
+	LIBRE, OCUPADA_CRUZ, OCUPADA_CIRCULO
 }

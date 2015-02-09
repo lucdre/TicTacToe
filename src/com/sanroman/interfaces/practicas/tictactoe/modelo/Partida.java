@@ -35,8 +35,7 @@ public class Partida {
 	 */
 	public boolean buscarTresEnRaya(int x, int y) {
 				
-		return true;
-		
+		return true;	
 	}
 	
 	/**
@@ -73,13 +72,14 @@ public class Partida {
 	 */
 	public void colocarFicha(int x, int y){
 		if(tablero.getTablero()[x][y] == Casilla.LIBRE){
-			tablero.getTablero()[x][y] = Casilla.OCUPADA;
+			if(fichaTurno == Ficha.CIRCULO)
+				tablero.getTablero()[x][y] = Casilla.OCUPADA_CIRCULO;
+			else
+				tablero.getTablero()[x][y] = Casilla.OCUPADA_CRUZ;
 			cambiarTurno();
 		}else{
 			System.out.println("no se ha hecho nada");
 		}
-		
-		
 		
 		tablero.mostrarTablero();
 	}
