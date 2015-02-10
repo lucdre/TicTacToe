@@ -15,5 +15,9 @@ public class PanelMensajes extends JOptionPane{
 	public static int exitConfirm(){
 		return PanelMensajes.showConfirmDialog(null, "¿Estas seguro de que quieres salir del juego?", "ATENCIÓN", PanelMensajes.YES_NO_OPTION);
 	}
+	
+	public static void startMsg(String turno){
+		PanelMensajes.showMessageDialog(null, "Empieza " + turno);
+	}
 
 }

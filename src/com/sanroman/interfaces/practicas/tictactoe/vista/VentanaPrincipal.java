@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import com.sanroman.interfaces.practicas.tictactoe.controlador.Controlador;
+
 /**
  * 
  * @since 20/01/2015 (Java 1.8)
@@ -14,12 +16,14 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
 	
-	Menu menuBar;
-	PanelJuego panelJuego;
-	BarraEstado barraEstado;
+	private Menu menuBar;
+	private PanelJuego panelJuego;
+	private BarraEstado barraEstado;
+	private Controlador controlador;
 
-	public VentanaPrincipal() {
+	public VentanaPrincipal(Controlador controlador) {
 		
+		this.controlador = controlador;
 		setupFrame();
 		
 	}
@@ -29,9 +33,9 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	private void setupFrame() {
 		
-		menuBar = new Menu();
-		panelJuego = new PanelJuego();
-		barraEstado = new BarraEstado();
+		menuBar = new Menu(controlador);
+		panelJuego = new PanelJuego(controlador);
+		barraEstado = new BarraEstado(controlador);
 
 		this.setLayout(new BorderLayout());
 		this.add(panelJuego, BorderLayout.CENTER);
@@ -42,9 +46,7 @@ public class VentanaPrincipal extends JFrame {
 		this.setLocationRelativeTo(null);
 	}
 
-	public static void main(String[] args) {
-		new VentanaPrincipal();
-	}
+	
 }
 
 

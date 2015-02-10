@@ -7,6 +7,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import com.sanroman.interfaces.practicas.tictactoe.controlador.Controlador;
+
 /**
  * @since 09/02/2015 (Java 1.8)
  * @author Luca
@@ -14,9 +16,13 @@ import javax.swing.JMenuItem;
  */
 @SuppressWarnings("serial")
 public class Menu extends JMenuBar {
+	
+	private Controlador controlador;
 	// TODO
-	public Menu() {
+	public Menu(Controlador controlador) {
 
+		this.controlador = controlador;
+		
 		JMenu partidaMenu = new JMenu("Partida");
 		JMenu ayudaMenu = new JMenu("Ayuda");
 		JMenuItem iniciarItem = new JMenuItem("Iniciar");
