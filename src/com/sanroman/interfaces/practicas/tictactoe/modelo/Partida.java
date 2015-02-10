@@ -1,6 +1,10 @@
 package com.sanroman.interfaces.practicas.tictactoe.modelo;
 
+import java.awt.Panel;
+import java.util.ArrayList;
 import java.util.Random;
+
+import com.sanroman.interfaces.practicas.tictactoe.vista.PanelMensajes;
 
 /**
  * 
@@ -20,33 +24,24 @@ public class Partida {
 	 * Si se sigue jugando o no
 	 */
 	private boolean jugando;
+	private int posX;
+	private int posY;
+	
+	private ArrayList<Observador> observ;
 	
 	private Tablero tablero;
 	
 	public Partida() {
 		tablero = new Tablero();
+		observ = new ArrayList<Observador>();
 	}
 	
 	/**
 	 * Busca si hay 3 en raya
 	 * @return True - Hay 3 en raya, False - No hay 3 en raya 
 	 */
+	//TODO
 	public boolean buscarGanador() {
-
-		Casilla[][] tab = tablero.getTablero();
-		
-		// HORIZONTAL DERECHA-IZQUIERDA
-		if (tab[0][0] == tab[0][0 + 1])
-			if (tab[0][0] == tab[0][0 + 2])
-				return true;
-		// VERTICAL ARRIBA-ABAJO
-		if (tab[0][0] == tab[0 + 1][0])
-			if (tab[0][0] == tab[0 + 2][0])
-				return true;
-		// DIAGONAL ARRIBA-ABAJO
-		if (tab[0][0] == tab[0 + 1][0 + 1])
-			if (tab[0][0] == tab[0 + 2][0 + 2])
-				return true;
 
 		return false;
 	}
@@ -76,12 +71,22 @@ public class Partida {
 		Random rnd = new Random();
 		turno = rnd.nextBoolean();
 		cambiarTurno();
+		if(fichaTurno == Ficha.CRUZ) PanelMensajes.startMsg("CRUZ");
+		else PanelMensajes.startMsg("CÍRCULO");
 		
 		jugando = true;
 		
+		while(jugando){
+			
+		}
 		tablero.mostrarTablero();
 		
 	}
+	
+	/**
+	 * El juego
+	 */
+	
 	
 	/**
 	 * Coloca la ficha en el tablero
@@ -117,8 +122,8 @@ public class Partida {
 
 	}
 	
-	public static void main(String[] args) {
-		new Partida().iniciar();
+	public void addObserv(Observador o){
+		observ.add(o);
 	}
 
 }
