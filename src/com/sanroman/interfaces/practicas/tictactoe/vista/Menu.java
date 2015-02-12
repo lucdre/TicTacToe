@@ -8,13 +8,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import com.sanroman.interfaces.practicas.tictactoe.controlador.Controlador;
+import com.sanroman.interfaces.practicas.tictactoe.modelo.Observador;
 
 /**
  * @author Luca Thiel (Lucdre)
  *
  */
 @SuppressWarnings("serial")
-public class Menu extends JMenuBar {
+public class Menu extends JMenuBar implements Observador{
 	
 	private Controlador controlador;
 	// TODO
@@ -58,6 +59,11 @@ public class Menu extends JMenuBar {
 
 		this.add(partidaMenu);
 		this.add(ayudaMenu);
+	}
+	@Override
+	public void iniciarPartida() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

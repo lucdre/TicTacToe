@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import com.sanroman.interfaces.practicas.tictactoe.controlador.Controlador;
+import com.sanroman.interfaces.practicas.tictactoe.modelo.Observador;
 
 /**
  * 
@@ -20,9 +21,11 @@ public class VentanaPrincipal extends JFrame {
 	private BarraEstado barraEstado;
 	private Controlador controlador;
 
-	public VentanaPrincipal(Controlador controlador) {
+	public VentanaPrincipal(Menu menu, PanelJuego panel, BarraEstado barra) {
 		
-		this.controlador = controlador;
+		this.menuBar = menu;
+		this.panelJuego = panel;
+		this.barraEstado = barra;
 		setupFrame();
 		
 	}
@@ -32,20 +35,15 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	private void setupFrame() {
 		
-		menuBar = new Menu(controlador);
-		panelJuego = new PanelJuego(controlador);
-		barraEstado = new BarraEstado(controlador);
-
 		this.setLayout(new BorderLayout());
 		this.add(panelJuego, BorderLayout.CENTER);
 		this.setJMenuBar(menuBar);
-		this.setVisible(true);
+		this.setVisible(false);
 		this.setSize(500, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 	}
 
-	
 }
 
 

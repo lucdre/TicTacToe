@@ -75,9 +75,9 @@ public class Partida {
 		
 		jugando = true;
 		
-		while(jugando){
-			
-		}
+//		while(jugando){
+//			
+//		}
 		tablero.mostrarTablero();
 		
 		for (Observador obs : observ) {

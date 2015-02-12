@@ -1,6 +1,7 @@
 package com.sanroman.interfaces.practicas.tictactoe.controlador;
 
 import com.sanroman.interfaces.practicas.tictactoe.modelo.Ficha;
+import com.sanroman.interfaces.practicas.tictactoe.modelo.Observador;
 import com.sanroman.interfaces.practicas.tictactoe.modelo.Partida;
 
 /**
@@ -25,6 +26,11 @@ public class Controlador {
 	
 	public Ficha getTurno(){
 		return modelo.getTurno();
+		
+	}
+
+	public void addObserver(Observador o) {
+		modelo.addObserv(o);
 		
 	}
 		
