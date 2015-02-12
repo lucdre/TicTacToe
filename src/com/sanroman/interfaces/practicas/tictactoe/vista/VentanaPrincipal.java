@@ -8,7 +8,6 @@ import com.sanroman.interfaces.practicas.tictactoe.controlador.Controlador;
 
 /**
  * 
- * @since 20/01/2015 (Java 1.8)
  * @author Luca Thiel (Lucdre)
  * 
  */

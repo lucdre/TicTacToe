@@ -1,26 +1,33 @@
 package com.sanroman.interfaces.practicas.tictactoe.controlador;
 
 import com.sanroman.interfaces.practicas.tictactoe.modelo.Ficha;
+import com.sanroman.interfaces.practicas.tictactoe.modelo.Partida;
 
 /**
- * @since 09/02/2015 (Java 1.8)
- * @author Luca
+ * @author Luca Thiel (Lucdre)
  *
  */
 public class Controlador {
 	
+	private Partida modelo;
+	
+	public Controlador(Partida modelo) {
+		this.modelo = modelo;
+	}
+	
 	public void iniciar(){
-		
+		modelo.iniciar();
 	}
 	
 	public void cambiaTurno(){
-		
+		modelo.cambiarTurno();
 	}
 	
 	public Ficha getTurno(){
+		return modelo.getTurno();
 		
 	}
-	
+		
 	
 
 }

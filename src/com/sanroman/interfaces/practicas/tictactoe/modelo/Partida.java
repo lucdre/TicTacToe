@@ -8,7 +8,6 @@ import com.sanroman.interfaces.practicas.tictactoe.vista.PanelMensajes;
 
 /**
  * 
- * @since 29/01/2015 (Java 1.8)
  * @author Luca Thiel (Lucdre)
  *
  */
@@ -81,6 +80,10 @@ public class Partida {
 		}
 		tablero.mostrarTablero();
 		
+		for (Observador obs : observ) {
+			obs.iniciarPartida();
+		}
+		
 	}
 	
 	/**
@@ -124,6 +127,11 @@ public class Partida {
 	
 	public void addObserv(Observador o){
 		observ.add(o);
+	}
+
+	public Ficha getTurno() {
+		return fichaTurno;
+		
 	}
 
 }

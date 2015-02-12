@@ -5,8 +5,7 @@ import javax.swing.JOptionPane;
 /**
  * Simple clase para las ventanas emergentes
  *
- * @since 09/02/2015 (Java 1.8)
- * @author Luca
+ * @author Luca Thiel (Lucdre)
  *
  */
 @SuppressWarnings("serial")

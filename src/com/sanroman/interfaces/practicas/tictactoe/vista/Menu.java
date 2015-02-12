@@ -10,8 +10,7 @@ import javax.swing.JMenuItem;
 import com.sanroman.interfaces.practicas.tictactoe.controlador.Controlador;
 
 /**
- * @since 09/02/2015 (Java 1.8)
- * @author Luca
+ * @author Luca Thiel (Lucdre)
  *
  */
 @SuppressWarnings("serial")
@@ -26,6 +25,14 @@ public class Menu extends JMenuBar {
 		JMenu partidaMenu = new JMenu("Partida");
 		JMenu ayudaMenu = new JMenu("Ayuda");
 		JMenuItem iniciarItem = new JMenuItem("Iniciar");
+		iniciarItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlador.iniciar();	
+			}
+		});
+		
 		JMenuItem guardarItem = new JMenuItem("Guardar");
 		guardarItem.setEnabled(false);
 		JMenuItem cargarItem = new JMenuItem("Cargar");
