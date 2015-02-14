@@ -4,15 +4,20 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import com.sanroman.interfaces.practicas.tictactoe.controlador.Controlador;
+import com.sanroman.interfaces.practicas.tictactoe.modelo.Ficha;
 import com.sanroman.interfaces.practicas.tictactoe.modelo.Observador;
 
 /**
@@ -26,11 +31,15 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 
 	private JButton[][] tableroBtns;
 	private Controlador controlador;
+	private ImageIcon tttX;
+	private ImageIcon tttO;
 
 	public PanelJuego(Controlador controlador) {
 
 		this.controlador = controlador;
 		addComponentes();
+		tttX =  new ImageIcon("res/tictactoeX.png");
+		tttO =  new ImageIcon("res/tictactoeO.png");
 
 	}
 
@@ -55,12 +64,23 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 	public void actionPerformed(ActionEvent e) {
 		for (int i = 0; i < tableroBtns.length; i++) {
 			for (int j = 0; j < tableroBtns.length; j++) {
-				if (e.getSource() == tableroBtns[i][j]) {
-					
+				if (e.getSource() == tableroBtns[i][j]) {				
+					controlador.colocarFicha(i, j);
 				}
 			}
 		}
 
+	}
+	
+	/**
+	 * Retorna true si es el turno es de cirulo y false si es X
+	 * @return
+	 */
+	public boolean getTurno(){
+		if(controlador.getTurno() == Ficha.CIRCULO)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
@@ -71,6 +91,23 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 				tableroBtns[i][j].setVisible(true);
 			}
 		}
+		
+	}
+
+	@Override
+	public void finalizaTurno(int i, int j, boolean c) {
+		if(c){
+			if(getTurno())
+				tableroBtns[i][j].setIcon(tttX);
+			else
+				tableroBtns[i][j].setIcon(tttO);		
+		}
+		
+	}
+
+	@Override
+	public void finPartida() {
+		// TODO Auto-generated method stub
 		
 	}
 

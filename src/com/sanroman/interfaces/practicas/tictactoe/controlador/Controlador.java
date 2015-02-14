@@ -33,6 +33,11 @@ public class Controlador {
 		modelo.addObserv(o);
 		
 	}
+
+	public void colocarFicha(int x, int y) {
+		modelo.colocarFicha(x, y);
+		
+	}
 		
 	
 

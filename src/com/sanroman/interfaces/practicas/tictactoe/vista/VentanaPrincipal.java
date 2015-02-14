@@ -19,7 +19,6 @@ public class VentanaPrincipal extends JFrame {
 	private Menu menuBar;
 	private PanelJuego panelJuego;
 	private BarraEstado barraEstado;
-	private Controlador controlador;
 
 	public VentanaPrincipal(Menu menu, PanelJuego panel, BarraEstado barra) {
 		
@@ -37,6 +36,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		this.setLayout(new BorderLayout());
 		this.add(panelJuego, BorderLayout.CENTER);
+		this.add(barraEstado, BorderLayout.SOUTH);
 		this.setJMenuBar(menuBar);
 		this.setVisible(false);
 		this.setSize(500, 500);

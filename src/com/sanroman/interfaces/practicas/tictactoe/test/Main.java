@@ -9,6 +9,7 @@ import com.sanroman.interfaces.practicas.tictactoe.vista.PanelJuego;
 import com.sanroman.interfaces.practicas.tictactoe.vista.VentanaPrincipal;
 
 /**
+ * Programa Principal.
  * 
  * @author Luca Thiel (Lucdre)
  *

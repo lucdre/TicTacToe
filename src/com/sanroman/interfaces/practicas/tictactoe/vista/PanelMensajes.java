@@ -18,5 +18,13 @@ public class PanelMensajes extends JOptionPane{
 	public static void startMsg(String turno){
 		PanelMensajes.showMessageDialog(null, "Empieza " + turno);
 	}
+	
+	public static void empateMsg(){
+		
+	}
+	
+	public static void finMsg(String turno){
+		
+	}
 
 }

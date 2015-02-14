@@ -18,14 +18,20 @@ import com.sanroman.interfaces.practicas.tictactoe.modelo.Observador;
 public class Menu extends JMenuBar implements Observador{
 	
 	private Controlador controlador;
+	private JMenuItem iniciarItem;
+	private JMenuItem guardarItem;
+	private JMenuItem cargarItem;
+	private JMenuItem finalizarItem;
+	private JMenuItem salirItem;
+	private JMenuItem acercaDeItem;
 	// TODO
 	public Menu(Controlador controlador) {
 
 		this.controlador = controlador;
 		
-		JMenu partidaMenu = new JMenu("Partida");
+		JMenu archivoMenu = new JMenu("Archivo");
 		JMenu ayudaMenu = new JMenu("Ayuda");
-		JMenuItem iniciarItem = new JMenuItem("Iniciar");
+		iniciarItem = new JMenuItem("Iniciar");
 		iniciarItem.addActionListener(new ActionListener() {
 			
 			@Override
@@ -34,10 +40,13 @@ public class Menu extends JMenuBar implements Observador{
 			}
 		});
 		
-		JMenuItem guardarItem = new JMenuItem("Guardar");
+		guardarItem = new JMenuItem("Guardar");
 		guardarItem.setEnabled(false);
-		JMenuItem cargarItem = new JMenuItem("Cargar");
-		JMenuItem salirItem = new JMenuItem("Salir");
+		cargarItem = new JMenuItem("Cargar");
+		finalizarItem = new JMenuItem("Finalizar partida");
+		finalizarItem.setEnabled(false);
+		finalizarItem.setToolTipText("Finaliza la partida actual");
+		salirItem = new JMenuItem("Salir");
 		salirItem.setToolTipText("Salir del juego");
 		salirItem.addActionListener(new ActionListener() {
 
@@ -49,19 +58,34 @@ public class Menu extends JMenuBar implements Observador{
 
 			}
 		});
-		JMenuItem acercaDeItem = new JMenuItem("Arcerca de");
+		acercaDeItem = new JMenuItem("Arcerca de");
 
-		partidaMenu.add(iniciarItem);
-		partidaMenu.add(guardarItem);
-		partidaMenu.add(cargarItem);
-		partidaMenu.add(salirItem);
+		archivoMenu.add(iniciarItem);
+		archivoMenu.add(guardarItem);
+		archivoMenu.add(cargarItem);
+		archivoMenu.add(finalizarItem);
+		archivoMenu.add(salirItem);
 		ayudaMenu.add(acercaDeItem);
 
-		this.add(partidaMenu);
+		this.add(archivoMenu);
 		this.add(ayudaMenu);
 	}
 	@Override
 	public void iniciarPartida() {
+		iniciarItem.setEnabled(false);
+		guardarItem.setEnabled(true);
+		cargarItem.setEnabled(false);
+		finalizarItem.setEnabled(true);
+		
+	}
+	
+	@Override
+	public void finalizaTurno(int x, int y, boolean c) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void finPartida() {
 		// TODO Auto-generated method stub
 		
 	}

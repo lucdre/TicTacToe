@@ -37,30 +37,109 @@ public class Partida {
 	
 	/**
 	 * Busca si hay 3 en raya
-	 * @return True - Hay 3 en raya, False - No hay 3 en raya 
 	 */
 	//TODO
-	public boolean buscarGanador() {
+	public void buscarGanador() {
 
-		return false;
+		Casilla[][] tab = tablero.getTablero();
+		int tam = tab.length;
+		boolean ganador = false;
+		int cont = 0;
+		int aux = 0;
+		
+		//Horizontal
+		if(!ganador)
+			for (int i = 0; i < tam; i++) {
+				for (int j = 0; j < tam; j++) {
+					if(tab[i][j] == Casilla.OCUPADA_CIRCULO && tab[i][j] != Casilla.LIBRE){
+						cont++;
+						System.out.println(i + "-" + j + "-" + cont);
+					}
+					
+				}
+				System.out.println(i);
+				if(cont==3 || cont==0){
+					ganador = true;
+					System.out.println("gana1");
+					break;
+				}
+				cont = 0;
+			}
+		
+		//Vertical
+		if(!ganador)
+			for (int i = 0; i < tam; i++) {
+				for (int j = 0; j < tam; j++) {
+					if(tab[j][i] == Casilla.OCUPADA_CIRCULO && tab[j][i] != Casilla.LIBRE)
+						cont++;
+				}
+				if(cont==3 || cont==0){
+					ganador = true;
+					System.out.println("gana2");
+					break;
+				}
+				cont = 0;
+			}
+		
+		//Diagonal
+		if (!ganador) {
+			for (int i = 0; i < tam; i++) {
+				for (int j = 0; j < tam; j++) {
+					if (aux == 0 || aux % 4 == 0) {
+						if (tab[i][j] == Casilla.OCUPADA_CIRCULO
+								&& tab[i][j] != Casilla.LIBRE)
+							cont++;
+					}
+					aux++;
+				}
+			}
+			if(cont==3 || cont==0){
+				System.out.println("gana3");
+				ganador = true;	
+			}
+			cont = 0;
+			aux = 0;
+		}
+		if (!ganador) {
+			for (int i = 0; i < tam; i++) {
+				for (int j = 0; j < tam; j++) {
+					if (aux == 0 || aux % 2 == 0 && aux != 8) {
+						if (tab[i][j] == Casilla.OCUPADA_CIRCULO
+								&& tab[i][j] != Casilla.LIBRE)
+							cont++;
+					}
+					aux++;
+				}
+			}
+			if(cont==3 || cont==0){
+				System.out.println("gana4");
+				ganador = true;	
+			}
+				
+		}
+		
+		if(ganador)
+			for (Observador obs : observ) 
+				obs.finPartida();
 	}
 	
 	/**
 	 * Busca si la partida ha empatado (tablero lleno)
-	 * @return True - ha empatado, False - No ha empatado
 	 */
-	public boolean buscarEmpate(){
+	public void buscarEmpate(){
 		
 		Casilla[][] tab = tablero.getTablero();
 		int tam = tab.length;
+		boolean empate = true;
 		
 		for (int i = 0; i < tam; i++)
 			for (int j = 0; j < tam; j++)
 				if (tab[i][j] == Casilla.LIBRE)
-					return false;
+					empate = false;
 
-		return true;
-		
+		if(empate)
+			for (Observador obs : observ) 
+				obs.finPartida();
 	}
 	
 	/**
@@ -73,11 +152,6 @@ public class Partida {
 		if(fichaTurno == Ficha.CRUZ) PanelMensajes.startMsg("CRUZ");
 		else PanelMensajes.startMsg("CÍRCULO");
 		
-		jugando = true;
-		
-//		while(jugando){
-//			
-//		}
 		tablero.mostrarTablero();
 		
 		for (Observador obs : observ) {
@@ -92,22 +166,28 @@ public class Partida {
 	
 	
 	/**
-	 * Coloca la ficha en el tablero
+	 * Coloca la ficha en el tablero si no hay ninguna colocada ya
 	 * @param x - Alto del tablero
 	 * @param y - Ancho del tablero
 	 */
 	public void colocarFicha(int x, int y){
+		boolean colocada = true;
 		if(tablero.getTablero()[x][y] == Casilla.LIBRE){
 			if(fichaTurno == Ficha.CIRCULO)
 				tablero.getTablero()[x][y] = Casilla.OCUPADA_CIRCULO;
 			else
 				tablero.getTablero()[x][y] = Casilla.OCUPADA_CRUZ;
 			cambiarTurno();
-		}else{
-			System.out.println("NO PUEDES COLOCAR LA FICHA AHÍ");
+		}else
+			colocada = false;
+		
+		for (Observador obs : observ) {
+			obs.finalizaTurno(x, y, colocada);
 		}
 		
-		tablero.mostrarTablero();
+		buscarGanador();
+		buscarEmpate();			
+		
 	}
 	
 	
