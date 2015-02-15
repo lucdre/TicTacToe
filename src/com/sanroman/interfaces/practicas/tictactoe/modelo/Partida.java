@@ -161,11 +161,6 @@ public class Partida {
 	}
 	
 	/**
-	 * El juego
-	 */
-	
-	
-	/**
 	 * Coloca la ficha en el tablero si no hay ninguna colocada ya
 	 * @param x - Alto del tablero
 	 * @param y - Ancho del tablero
