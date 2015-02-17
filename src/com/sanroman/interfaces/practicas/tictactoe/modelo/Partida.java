@@ -1,6 +1,5 @@
 package com.sanroman.interfaces.practicas.tictactoe.modelo;
 
-import java.awt.Panel;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -39,88 +38,119 @@ public class Partida {
 	 * Busca si hay 3 en raya
 	 */
 	//TODO
-	public void buscarGanador() {
-
+	public boolean buscarGanador() {
+		
 		Casilla[][] tab = tablero.getTablero();
 		int tam = tab.length;
-		boolean ganador = false;
 		int cont = 0;
-		int aux = 0;
+		//Circulo true, X false (Sin adaptar)
 		
-		//Horizontal
-		if(!ganador)
-			for (int i = 0; i < tam; i++) {
-				for (int j = 0; j < tam; j++) {
-					if(tab[i][j] == Casilla.OCUPADA_CIRCULO && tab[i][j] != Casilla.LIBRE){
-						cont++;
-						System.out.println(i + "-" + j + "-" + cont);
-					}
-					
-				}
-				System.out.println(i);
-				if(cont==3 || cont==0){
-					ganador = true;
-					System.out.println("gana1");
-					break;
-				}
-				cont = 0;
-			}
-		
-		//Vertical
-		if(!ganador)
-			for (int i = 0; i < tam; i++) {
-				for (int j = 0; j < tam; j++) {
-					if(tab[j][i] == Casilla.OCUPADA_CIRCULO && tab[j][i] != Casilla.LIBRE)
+		//horizontal
+		for (int i = 0; i < tam; i++) {
+			for (int j = 0; j < tam; j++) {
+				if(!turno){
+					if(tab[i][j] == Casilla.OCUPADA_CIRCULO)
 						cont++;
 				}
-				if(cont==3 || cont==0){
-					ganador = true;
-					System.out.println("gana2");
-					break;
-				}
+				else if(turno)
+					if(tab[i][j] == Casilla.OCUPADA_CRUZ)
+						cont++;
+			}
+			if(cont!=3)
 				cont = 0;
-			}
-		
-		//Diagonal
-		if (!ganador) {
-			for (int i = 0; i < tam; i++) {
-				for (int j = 0; j < tam; j++) {
-					if (aux == 0 || aux % 4 == 0) {
-						if (tab[i][j] == Casilla.OCUPADA_CIRCULO
-								&& tab[i][j] != Casilla.LIBRE)
-							cont++;
-					}
-					aux++;
-				}
-			}
-			if(cont==3 || cont==0){
-				System.out.println("gana3");
-				ganador = true;	
-			}
-			cont = 0;
-			aux = 0;
-		}
-		if (!ganador) {
-			for (int i = 0; i < tam; i++) {
-				for (int j = 0; j < tam; j++) {
-					if (aux == 0 || aux % 2 == 0 && aux != 8) {
-						if (tab[i][j] == Casilla.OCUPADA_CIRCULO
-								&& tab[i][j] != Casilla.LIBRE)
-							cont++;
-					}
-					aux++;
-				}
-			}
-			if(cont==3 || cont==0){
-				System.out.println("gana4");
-				ganador = true;	
-			}
-				
+			else return true;
 		}
 		
-		if(ganador)
-			for (Observador obs : observ) 
-				obs.finPartida();
+		return false;
+		
+		
+		
+		
+		
+		
+		
+		
+
+//		Casilla[][] tab = tablero.getTablero();
+//		int tam = tab.length;
+//		boolean ganador = false;
+//		int cont = 0;
+//		int aux = 0;
+//		
+//		//Horizontal
+//		if(!ganador)
+//			for (int i = 0; i < tam; i++) {
+//				for (int j = 0; j < tam; j++) {
+//					if(tab[i][j] == Casilla.OCUPADA_CIRCULO && tab[i][j] != Casilla.LIBRE){
+//						cont++;
+//						System.out.println(i + "-" + j + "-" + cont);
+//					}
+//					
+//				}
+//				System.out.println(i);
+//				if(cont==3 || cont==0){
+//					ganador = true;
+//					System.out.println("gana1");
+//					break;
+//				}
+//				cont = 0;
+//			}
+//		
+//		//Vertical
+//		if(!ganador)
+//			for (int i = 0; i < tam; i++) {
+//				for (int j = 0; j < tam; j++) {
+//					if(tab[j][i] == Casilla.OCUPADA_CIRCULO && tab[j][i] != Casilla.LIBRE)
+//						cont++;
+//				}
+//				if(cont==3 || cont==0){
+//					ganador = true;
+//					System.out.println("gana2");
+//					break;
+//				}
+//				cont = 0;
+//			}
+//		
+//		//Diagonal
+//		if (!ganador) {
+//			for (int i = 0; i < tam; i++) {
+//				for (int j = 0; j < tam; j++) {
+//					if (aux == 0 || aux % 4 == 0) {
+//						if (tab[i][j] == Casilla.OCUPADA_CIRCULO
+//								&& tab[i][j] != Casilla.LIBRE)
+//							cont++;
+//					}
+//					aux++;
+//				}
+//			}
+//			if(cont==3 || cont==0){
+//				System.out.println("gana3");
+//				ganador = true;	
+//			}
+//			cont = 0;
+//			aux = 0;
+//		}
+//		if (!ganador) {
+//			for (int i = 0; i < tam; i++) {
+//				for (int j = 0; j < tam; j++) {
+//					if (aux == 0 || aux % 2 == 0 && aux != 8) {
+//						if (tab[i][j] == Casilla.OCUPADA_CIRCULO
+//								&& tab[i][j] != Casilla.LIBRE)
+//							cont++;
+//					}
+//					aux++;
+//				}
+//			}
+//			if(cont==3 || cont==0){
+//				System.out.println("gana4");
+//				ganador = true;	
+//			}
+//				
+//		}
+//		
+//		if(ganador)
+//			for (Observador obs : observ) 
+//				obs.finPartida();
 	}
 	
 	/**
@@ -180,7 +210,10 @@ public class Partida {
 			obs.finalizaTurno(x, y, colocada);
 		}
 		
-		buscarGanador();
+		if(buscarGanador())
+			for (Observador obs : observ) 
+				obs.finPartida();
+			
 		buscarEmpate();			
 		
 	}

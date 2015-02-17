@@ -1,7 +1,6 @@
 package com.sanroman.interfaces.practicas.tictactoe.test;
 
 import com.sanroman.interfaces.practicas.tictactoe.controlador.Controlador;
-import com.sanroman.interfaces.practicas.tictactoe.modelo.Observador;
 import com.sanroman.interfaces.practicas.tictactoe.modelo.Partida;
 import com.sanroman.interfaces.practicas.tictactoe.vista.BarraEstado;
 import com.sanroman.interfaces.practicas.tictactoe.vista.Menu;
@@ -9,7 +8,6 @@ import com.sanroman.interfaces.practicas.tictactoe.vista.PanelJuego;
 import com.sanroman.interfaces.practicas.tictactoe.vista.VentanaPrincipal;
 
 /**
- * Programa Principal.
  * 
  * @author Luca Thiel (Lucdre)
  *

@@ -1,15 +1,10 @@
 package com.sanroman.interfaces.practicas.tictactoe.vista;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -44,7 +39,7 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 	}
 
 	private void addComponentes() {
-		this.setLayout(new GridLayout(3, 3));
+		this.setLayout(new GridLayout(tam, tam));
 		Border border = new LineBorder(Color.BLACK, 5);
 		tableroBtns = new JButton[tam][tam];
 		for (int i = 0; i < tam; i++) {
@@ -57,6 +52,7 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 				this.add(tableroBtns[i][j]);
 			}
 		}
+		
 
 	}
 
@@ -103,12 +99,19 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 				tableroBtns[i][j].setIcon(tttO);		
 		}
 		
+		System.out.println(tableroBtns[0][0].getSize().height);
+		System.out.println(tableroBtns[0][0].getSize().width);
+		
 	}
 
 	@Override
 	public void finPartida() {
 		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < tam; i++) {
+			for (int j = 0; j < tam; j++) {
+				tableroBtns[i][j].setEnabled(false);
+			}
+		}
 	}
 
 }

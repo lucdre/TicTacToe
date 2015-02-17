@@ -4,9 +4,6 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
-import com.sanroman.interfaces.practicas.tictactoe.controlador.Controlador;
-import com.sanroman.interfaces.practicas.tictactoe.modelo.Observador;
-
 /**
  * 
  * @author Luca Thiel (Lucdre)
