@@ -93,7 +93,7 @@ public class Partida {
 		
 		//Diagonal 2
 
-		
+		 
 		
 		
 		
