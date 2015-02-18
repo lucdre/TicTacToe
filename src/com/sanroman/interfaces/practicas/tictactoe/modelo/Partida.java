@@ -61,6 +61,42 @@ public class Partida {
 			else return true;
 		}
 		
+		//vertical
+		for (int i = 0; i < tam; i++) {
+			for (int j = 0; j < tam; j++) {
+				if(!turno){
+					if(tab[j][i] == Casilla.OCUPADA_CIRCULO)
+						cont++;
+				}
+				else if(turno)
+					if(tab[j][i] == Casilla.OCUPADA_CRUZ)
+						cont++;
+			}
+			if(cont!=3)
+				cont = 0;
+			else return true;
+		}
+		
+		//Diagonal 1
+		for (int j = 0; j < tam; j++) {
+			if (!turno) {
+				if (tab[j][j] == Casilla.OCUPADA_CIRCULO)
+					cont++;
+			} else if (turno)
+				if (tab[j][j] == Casilla.OCUPADA_CRUZ)
+					cont++;
+		}
+		if (cont != 3)
+			cont = 0;
+		else
+			return true;
+		
+		//Diagonal 2
+
+		
+		
+		
+		
 		return false;
 		
 		
