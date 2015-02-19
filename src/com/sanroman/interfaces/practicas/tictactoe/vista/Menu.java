@@ -46,6 +46,14 @@ public class Menu extends JMenuBar implements Observador{
 		finalizarItem = new JMenuItem("Finalizar partida");
 		finalizarItem.setEnabled(false);
 		finalizarItem.setToolTipText("Finaliza la partida actual");
+		finalizarItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlador.reset();
+				
+			}
+		});
 		salirItem = new JMenuItem("Salir");
 		salirItem.setToolTipText("Salir del juego");
 		salirItem.addActionListener(new ActionListener() {
@@ -85,8 +93,16 @@ public class Menu extends JMenuBar implements Observador{
 		
 	}
 	@Override
-	public void finPartida() {
+	public void finPartida(int n) {
 		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void resetPartida() {
+		iniciarItem.setEnabled(true);
+		guardarItem.setEnabled(false);
+		cargarItem.setEnabled(true);
+		finalizarItem.setEnabled(false);
 		
 	}
 

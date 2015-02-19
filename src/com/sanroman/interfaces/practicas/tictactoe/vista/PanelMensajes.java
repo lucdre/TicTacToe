@@ -23,8 +23,18 @@ public class PanelMensajes extends JOptionPane{
 		
 	}
 	
-	public static void finMsg(String turno){
-		
+	public static void finMsg(int n){
+		switch(n){
+		case 0:
+			PanelMensajes.showMessageDialog(null, "EMPATE, FIN DE LA PARTIDA");
+			break;
+		case 1:
+			PanelMensajes.showMessageDialog(null, "LA PARTIDA HA FINALIZADO, HA GANADO CÍRCULO");
+			break;
+		case 2:
+			PanelMensajes.showMessageDialog(null, "LA PARTIDA HA FINALIZADO, HA GANADO CRUZ");
+			break;
+		}
 	}
 
 }

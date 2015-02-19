@@ -24,6 +24,11 @@ public class Controlador {
 		modelo.cambiarTurno();
 	}
 	
+	public void reset() {
+		modelo.reset();
+		
+	}
+	
 	public Ficha getTurno(){
 		return modelo.getTurno();
 		
@@ -38,6 +43,8 @@ public class Controlador {
 		modelo.colocarFicha(x, y);
 		
 	}
+
+	
 		
 	
 

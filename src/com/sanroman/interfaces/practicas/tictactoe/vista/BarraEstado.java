@@ -42,8 +42,25 @@ public class BarraEstado extends JLabel implements Observador{
 	}
 
 	@Override
-	public void finPartida() {
-		this.setText("LA PARTIDA HA FINALIZADO");
+	public void finPartida(int n) {
+		PanelMensajes.finMsg(n);
+		switch(n){
+		case 0:
+			this.setText("EMPATE, FIN DE LA PARTIDA");
+			break;
+		case 1:
+			this.setText("LA PARTIDA HA FINALIZADO, HA GANADO CÍRCULO");
+			break;
+		case 2:
+			this.setText("LA PARTIDA HA FINALIZADO, HA GANADO CRUZ");
+			break;
+		}
+		
+	}
+
+	@Override
+	public void resetPartida() {
+		this.setText("");
 		
 	}
 

@@ -14,7 +14,8 @@ public interface Observador {
 	 * @param colocada - Si se coloca o no la ficha
 	 */
 	public void finalizaTurno(int x, int y, boolean colocada);
-	public void finPartida();
+	public void finPartida(int n);
+	public void resetPartida();
 	
 
 }

@@ -43,7 +43,6 @@ public class Partida {
 		Casilla[][] tab = tablero.getTablero();
 		int tam = tab.length;
 		int cont = 0;
-		//Circulo true, X false (Sin adaptar)
 		
 		//horizontal
 		for (int i = 0; i < tam; i++) {
@@ -92,101 +91,21 @@ public class Partida {
 			return true;
 		
 		//Diagonal 2
+		int n=tab.length-1;
+		 for (int i = 0; i < tab.length; i++) {
+			 if (!turno) {
+					if (tab[n-i][i] == Casilla.OCUPADA_CIRCULO)
+						cont++;
+				} else if (turno)
+					if (tab[n-i][i] == Casilla.OCUPADA_CRUZ)
+						cont++;
+		}
+		 if (cont != 3)
+				cont = 0;
+			else
+				return true;
 
-		 
-		
-		
-		
-		return false;
-		
-		
-		
-		
-		
-		
-		
-		
-
-//		Casilla[][] tab = tablero.getTablero();
-//		int tam = tab.length;
-//		boolean ganador = false;
-//		int cont = 0;
-//		int aux = 0;
-//		
-//		//Horizontal
-//		if(!ganador)
-//			for (int i = 0; i < tam; i++) {
-//				for (int j = 0; j < tam; j++) {
-//					if(tab[i][j] == Casilla.OCUPADA_CIRCULO && tab[i][j] != Casilla.LIBRE){
-//						cont++;
-//						System.out.println(i + "-" + j + "-" + cont);
-//					}
-//					
-//				}
-//				System.out.println(i);
-//				if(cont==3 || cont==0){
-//					ganador = true;
-//					System.out.println("gana1");
-//					break;
-//				}
-//				cont = 0;
-//			}
-//		
-//		//Vertical
-//		if(!ganador)
-//			for (int i = 0; i < tam; i++) {
-//				for (int j = 0; j < tam; j++) {
-//					if(tab[j][i] == Casilla.OCUPADA_CIRCULO && tab[j][i] != Casilla.LIBRE)
-//						cont++;
-//				}
-//				if(cont==3 || cont==0){
-//					ganador = true;
-//					System.out.println("gana2");
-//					break;
-//				}
-//				cont = 0;
-//			}
-//		
-//		//Diagonal
-//		if (!ganador) {
-//			for (int i = 0; i < tam; i++) {
-//				for (int j = 0; j < tam; j++) {
-//					if (aux == 0 || aux % 4 == 0) {
-//						if (tab[i][j] == Casilla.OCUPADA_CIRCULO
-//								&& tab[i][j] != Casilla.LIBRE)
-//							cont++;
-//					}
-//					aux++;
-//				}
-//			}
-//			if(cont==3 || cont==0){
-//				System.out.println("gana3");
-//				ganador = true;	
-//			}
-//			cont = 0;
-//			aux = 0;
-//		}
-//		if (!ganador) {
-//			for (int i = 0; i < tam; i++) {
-//				for (int j = 0; j < tam; j++) {
-//					if (aux == 0 || aux % 2 == 0 && aux != 8) {
-//						if (tab[i][j] == Casilla.OCUPADA_CIRCULO
-//								&& tab[i][j] != Casilla.LIBRE)
-//							cont++;
-//					}
-//					aux++;
-//				}
-//			}
-//			if(cont==3 || cont==0){
-//				System.out.println("gana4");
-//				ganador = true;	
-//			}
-//				
-//		}
-//		
-//		if(ganador)
-//			for (Observador obs : observ) 
-//				obs.finPartida();
+		return false;	
 	}
 	
 	/**
@@ -205,7 +124,7 @@ public class Partida {
 
 		if(empate)
 			for (Observador obs : observ) 
-				obs.finPartida();
+				obs.finPartida(0);
 	}
 	
 	/**
@@ -217,8 +136,6 @@ public class Partida {
 		cambiarTurno();
 		if(fichaTurno == Ficha.CRUZ) PanelMensajes.startMsg("CRUZ");
 		else PanelMensajes.startMsg("CÍRCULO");
-		
-		tablero.mostrarTablero();
 		
 		for (Observador obs : observ) {
 			obs.iniciarPartida();
@@ -246,11 +163,17 @@ public class Partida {
 			obs.finalizaTurno(x, y, colocada);
 		}
 		
-		if(buscarGanador())
-			for (Observador obs : observ) 
-				obs.finPartida();
-			
-		buscarEmpate();			
+		if(buscarGanador()){
+			for (Observador obs : observ){
+				if(!turno)
+					obs.finPartida(1);
+				else
+					obs.finPartida(2);
+		
+			}
+		}
+		else
+			buscarEmpate();			
 		
 	}
 	
@@ -269,6 +192,13 @@ public class Partida {
 
 	}
 	
+	public void reset(){
+		tablero = new Tablero();
+		for (Observador obs : observ) {
+			obs.resetPartida();
+		}
+	}
+	
 	public void addObserv(Observador o){
 		observ.add(o);
 	}
@@ -277,5 +207,7 @@ public class Partida {
 		return fichaTurno;
 		
 	}
+	
+	
 
 }

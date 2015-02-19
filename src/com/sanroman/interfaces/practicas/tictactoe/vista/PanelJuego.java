@@ -40,19 +40,7 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 
 	private void addComponentes() {
 		this.setLayout(new GridLayout(tam, tam));
-		Border border = new LineBorder(Color.BLACK, 5);
 		tableroBtns = new JButton[tam][tam];
-		for (int i = 0; i < tam; i++) {
-			for (int j = 0; j < tam; j++) {
-				tableroBtns[i][j] = new JButton();
-				tableroBtns[i][j].addActionListener(this);
-				tableroBtns[i][j].setBorder(border);
-				tableroBtns[i][j].setEnabled(false);
-				tableroBtns[i][j].setVisible(false);
-				this.add(tableroBtns[i][j]);
-			}
-		}
-		
 
 	}
 
@@ -81,10 +69,13 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 
 	@Override
 	public void iniciarPartida() {
+		Border border = new LineBorder(Color.BLACK, 5);
 		for (int i = 0; i < tam; i++) {
 			for (int j = 0; j < tam; j++) {
-				tableroBtns[i][j].setEnabled(true);
-				tableroBtns[i][j].setVisible(true);
+				tableroBtns[i][j] = new JButton();
+				tableroBtns[i][j].addActionListener(this);
+				tableroBtns[i][j].setBorder(border);
+				this.add(tableroBtns[i][j]);
 			}
 		}
 		
@@ -97,21 +88,28 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 				tableroBtns[i][j].setIcon(tttX);
 			else
 				tableroBtns[i][j].setIcon(tttO);		
-		}
-		
-		System.out.println(tableroBtns[0][0].getSize().height);
-		System.out.println(tableroBtns[0][0].getSize().width);
-		
+		}		
 	}
 
 	@Override
-	public void finPartida() {
+	public void finPartida(int n) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < tam; i++) {
 			for (int j = 0; j < tam; j++) {
 				tableroBtns[i][j].setEnabled(false);
 			}
 		}
+	}
+
+	@Override
+	public void resetPartida() {
+		for (int i = 0; i < tam; i++) {
+			for (int j = 0; j < tam; j++) {
+				this.remove(tableroBtns[i][j]);
+				
+			}
+		}
+		
 	}
 
 }

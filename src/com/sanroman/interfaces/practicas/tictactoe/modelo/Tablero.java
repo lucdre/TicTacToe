@@ -26,15 +26,6 @@ public class Tablero {
 		return tablero;
 	}
 	
-	public void mostrarTablero(){
-		for (int i = 0; i < tam; i++) {
-			for (int j = 0; j < tam; j++) {
-				System.out.print(tablero[i][j] + " ");
-			}
-			System.out.println();
-		}
-	}
-	
 }
 
 
