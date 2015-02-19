@@ -17,7 +17,6 @@ import com.sanroman.interfaces.practicas.tictactoe.modelo.Observador;
 @SuppressWarnings("serial")
 public class Menu extends JMenuBar implements Observador{
 	
-	private Controlador controlador;
 	private JMenuItem iniciarItem;
 	private JMenuItem guardarItem;
 	private JMenuItem cargarItem;
@@ -26,8 +25,6 @@ public class Menu extends JMenuBar implements Observador{
 	private JMenuItem acercaDeItem;
 	// TODO
 	public Menu(Controlador controlador) {
-
-		this.controlador = controlador;
 		
 		JMenu archivoMenu = new JMenu("Archivo");
 		JMenu ayudaMenu = new JMenu("Ayuda");

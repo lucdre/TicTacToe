@@ -17,14 +17,7 @@ public class Partida {
 	 */
 	private boolean turno; 
 	private Ficha fichaTurno;
-	
-	/**
-	 * Si se sigue jugando o no
-	 */
-	private boolean jugando;
-	private int posX;
-	private int posY;
-	
+		
 	private ArrayList<Observador> observ;
 	
 	private Tablero tablero;
@@ -35,9 +28,10 @@ public class Partida {
 	}
 	
 	/**
-	 * Busca si hay 3 en raya
+	 * Busca si hay 3 en raya.
+	 * Recorre el tablero en horizontal, {@link Tablero} vertical, y las 2 diagonales en busca de 3 casillas iguales.
+	 * @return <code>Boolean</code> si ha encontrado ganador o no
 	 */
-	//TODO
 	public boolean buscarGanador() {
 		
 		Casilla[][] tab = tablero.getTablero();
