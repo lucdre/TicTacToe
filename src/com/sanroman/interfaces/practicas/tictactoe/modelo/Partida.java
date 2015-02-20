@@ -106,7 +106,7 @@ public class Partida {
 				cont = 0;
 			else
 				return true;
-
+		 
 		return false;	
 	}
 	
@@ -141,8 +141,7 @@ public class Partida {
 		
 		for (Observador obs : observ) {
 			obs.iniciarPartida();
-		}
-		
+		}	
 	}
 	
 	/**
@@ -172,12 +171,10 @@ public class Partida {
 					obs.finPartida(1);
 				else
 					obs.finPartida(2);
-		
 			}
 		}
 		else
-			buscarEmpate();			
-		
+			buscarEmpate();				
 	}
 	
 	
@@ -192,7 +189,6 @@ public class Partida {
 			turno = true;
 			fichaTurno = Ficha.CIRCULO;
 		}
-
 	}
 	
 	/**
@@ -218,8 +214,7 @@ public class Partida {
 	 * @return {@link Ficha} - el turno.
 	 */
 	public Ficha getTurno() {
-		return fichaTurno;
-		
+		return fichaTurno;	
 	}
 
 	/**
@@ -335,8 +330,7 @@ public class Partida {
 		}
 		
 		if(seguirComprobando){
-			comprobarArchivo(lineas);
-				
+			comprobarArchivo(lineas);			
 		}
 	}
 
@@ -411,9 +405,7 @@ public class Partida {
 					reset();
 					return false;
 				}
-			}
-			
-			
+			}	
 		}
 		//comprobacion fichas correctas (no puede haber 3 fichas negras y una roja por ejemplo).
 		if(contNegras-conRojas>1 || conRojas-contNegras>1){
@@ -423,7 +415,6 @@ public class Partida {
 		}
 		return true;
 	}
-
 }
 
 

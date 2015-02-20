@@ -30,8 +30,7 @@ public class BarraEstado extends JLabel implements Observador{
 	public BarraEstado(Controlador controlador) {
 		this.controlador = controlador;
 		this.setHorizontalAlignment(JLabel.CENTER);
-		this.setText("PARTIDA NO INCIADA");
-		
+		this.setText("PARTIDA NO INCIADA");	
 	}
 
 	/**
@@ -50,7 +49,6 @@ public class BarraEstado extends JLabel implements Observador{
 	@Override
 	public void iniciarPartida() {
 		setTurnoText();
-		
 	}
 
 	/**
@@ -79,7 +77,6 @@ public class BarraEstado extends JLabel implements Observador{
 			this.setText("LA PARTIDA HA FINALIZADO, HA GANADO CRUZ");
 			break;
 		}
-		
 	}
 
 	/**
@@ -87,8 +84,7 @@ public class BarraEstado extends JLabel implements Observador{
 	 */
 	@Override
 	public void resetPartida() {
-		this.setText("");
-		
+		this.setText("PARTIDA NO INICIADA");	
 	}
 
 }

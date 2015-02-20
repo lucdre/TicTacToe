@@ -79,8 +79,6 @@ public class VentanaAcercaDe extends JFrame {
 				PanelMensajes.errorMsg(1);
 			}
 		}
-		
 		return line;
 	}
-
 }

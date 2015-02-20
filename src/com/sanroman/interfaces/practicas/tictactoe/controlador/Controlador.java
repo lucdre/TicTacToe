@@ -47,8 +47,7 @@ public class Controlador {
 	 * Resetea una partida.
 	 */
 	public void reset() {
-		modelo.reset();
-		
+		modelo.reset();	
 	}
 	
 	/**
@@ -56,8 +55,7 @@ public class Controlador {
 	 * @return {@link Ficha} - el turno.
 	 */
 	public Ficha getTurno(){
-		return modelo.getTurno();
-		
+		return modelo.getTurno();	
 	}
 
 	/**
@@ -65,8 +63,7 @@ public class Controlador {
 	 * @param o - el observador.
 	 */
 	public void addObserver(Observador o) {
-		modelo.addObserv(o);
-		
+		modelo.addObserv(o);	
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class Controlador {
 	 * @param y - ancho del {@link Tablero}.
 	 */
 	public void colocarFicha(int x, int y) {
-		modelo.colocarFicha(x, y);
-		
+		modelo.colocarFicha(x, y);	
 	}
 
 	/**
@@ -101,8 +97,7 @@ public class Controlador {
 	 * @param string - La ruta en la que se guarda.
 	 */
 	public void guardar(String string) {
-		modelo.guardar(string);
-		
+		modelo.guardar(string);	
 	}
 
 	/**
@@ -110,12 +105,7 @@ public class Controlador {
 	 * @param selectedFile - El archivo que se va a cargar.
 	 */
 	public void cargar(File selectedFile) {
-		modelo.cargar(selectedFile);
-		
-	}
-
-	
-		
-	
+		modelo.cargar(selectedFile);	
+	}	
 
 }

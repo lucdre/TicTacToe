@@ -70,8 +70,6 @@ public class PanelMensajes extends JOptionPane{
 		case 3:
 			PanelMensajes.showMessageDialog(null, "El fichero está corrupto, no se puede cargar la partida");
 			break;	
-		}
-		
+		}	
 	}
-
 }

@@ -53,7 +53,4 @@ public class VentanaPrincipal extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 	}
-
 }
-
-

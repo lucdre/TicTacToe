@@ -28,5 +28,4 @@ public class Main {
 		vista.setVisible(true);
 	}
 	
-	
 }

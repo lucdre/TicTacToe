@@ -47,7 +47,6 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 		iniciarComponentes();
 		tttX =  new ImageIcon("res/tictactoeX.png");
 		tttO =  new ImageIcon("res/tictactoeO.png");
-
 	}
 
 	/**
@@ -56,7 +55,6 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 	private void iniciarComponentes() {
 		this.setLayout(new GridLayout(tam, tam));
 		tableroBtns = new JButton[tam][tam];
-
 	}
 
 	/**
@@ -71,7 +69,6 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 				}
 			}
 		}
-
 	}
 	
 	/**
@@ -98,8 +95,7 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 				tableroBtns[i][j].setBorder(border);
 				this.add(tableroBtns[i][j]);
 			}
-		}
-		
+		}	
 	}
 
 	/**
@@ -116,7 +112,6 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 			tableroBtns[i][j].setIcon(tttX);
 		else
 			tableroBtns[i][j].setIcon(tttO);
-
 	}
 
 	/**
@@ -140,10 +135,7 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 		for (int i = 0; i < tam; i++) {
 			for (int j = 0; j < tam; j++) {
 				this.remove(tableroBtns[i][j]);
-				
 			}
-		}
-		
+		}	
 	}
-
 }

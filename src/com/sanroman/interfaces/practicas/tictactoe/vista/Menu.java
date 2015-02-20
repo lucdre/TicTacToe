@@ -93,8 +93,7 @@ public class Menu extends JMenuBar implements Observador, ActionListener{
 		iniciarItem.setEnabled(false);
 		guardarItem.setEnabled(true);
 		cargarItem.setEnabled(false);
-		finalizarItem.setEnabled(true);
-		
+		finalizarItem.setEnabled(true);		
 	}
 	
 	/**
@@ -108,8 +107,7 @@ public class Menu extends JMenuBar implements Observador, ActionListener{
 	 */
 	@Override
 	public void finPartida(int n) {
-		guardarItem.setEnabled(false);
-		
+		guardarItem.setEnabled(false);	
 	}
 	/**
 	 * Ajustes necesarios del menú al resettear la partida.
@@ -119,8 +117,7 @@ public class Menu extends JMenuBar implements Observador, ActionListener{
 		iniciarItem.setEnabled(true);
 		guardarItem.setEnabled(false);
 		cargarItem.setEnabled(true);
-		finalizarItem.setEnabled(false);
-		
+		finalizarItem.setEnabled(false);		
 	}
 	/**
 	 * Las acciones al pulsar las distintas opciones del menú.
@@ -163,7 +160,5 @@ public class Menu extends JMenuBar implements Observador, ActionListener{
 		if(e.getSource().equals(acercaDeItem)){
 			new VentanaAcercaDe();
 		}
-		
 	}
-
 }
