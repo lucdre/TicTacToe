@@ -101,10 +101,7 @@ public class Menu extends JMenuBar implements Observador, ActionListener{
 	 * Ajustes del menú al finalizar el turno.
 	 */
 	@Override
-	public void finalizaTurno(int x, int y, boolean c) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void finalizaTurno(int x, int y, boolean c) {}
 	
 	/**
 	 * Ajustes necesarios del menú al finalizar la partida.
