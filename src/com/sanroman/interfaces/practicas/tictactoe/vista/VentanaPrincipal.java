@@ -5,18 +5,30 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 /**
+ * Clase para la Ventana Principal que reune todos los componentes de la vista.
  * 
  * @author Luca Thiel (Lucdre)
  * 
  */
 
-@SuppressWarnings("serial")
+
 public class VentanaPrincipal extends JFrame {
+	
+	/**
+	 * Auto-Generated Serial
+	 */
+	private static final long serialVersionUID = 2879019417236604564L;
 	
 	private Menu menuBar;
 	private PanelJuego panelJuego;
 	private BarraEstado barraEstado;
 
+	/**
+	 * Constructor básico para crear la vista.
+	 * @param menu - El menú del juego.
+	 * @param panel - El panel principal del juego.
+	 * @param barra - La barra de estados del juego.
+	 */
 	public VentanaPrincipal(Menu menu, PanelJuego panel, BarraEstado barra) {
 		
 		this.menuBar = menu;

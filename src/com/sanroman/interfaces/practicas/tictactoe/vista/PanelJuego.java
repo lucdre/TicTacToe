@@ -16,11 +16,18 @@ import com.sanroman.interfaces.practicas.tictactoe.modelo.Ficha;
 import com.sanroman.interfaces.practicas.tictactoe.modelo.Observador;
 
 /**
+ * Clase para ajustar el panel de juego principal.
+ * 
  * @author Luca Thiel (Lucdre)
  *
  */
-@SuppressWarnings("serial")
+
 public class PanelJuego extends JPanel implements ActionListener, Observador {
+
+	/**
+	 * Auto-Generated Serial
+	 */
+	private static final long serialVersionUID = 7180837344347630995L;
 
 	private static final int tam = 3;
 
@@ -29,21 +36,32 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 	private ImageIcon tttX;
 	private ImageIcon tttO;
 
+	/**
+	 * Ajustes básicos para inciar el panel.
+	 * 
+	 * @param controlador - el controlador.
+	 */
 	public PanelJuego(Controlador controlador) {
 
 		this.controlador = controlador;
-		addComponentes();
+		iniciarComponentes();
 		tttX =  new ImageIcon("res/tictactoeX.png");
 		tttO =  new ImageIcon("res/tictactoeO.png");
 
 	}
 
-	private void addComponentes() {
+	/**
+	 * Para iniciar algunos componentes necesarios.
+	 */
+	private void iniciarComponentes() {
 		this.setLayout(new GridLayout(tam, tam));
 		tableroBtns = new JButton[tam][tam];
 
 	}
 
+	/**
+	 * Las acciones al pulsar los botones.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		for (int i = 0; i < tableroBtns.length; i++) {
@@ -57,8 +75,8 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 	}
 	
 	/**
-	 * Retorna true si es el turno es de cirulo y false si es X
-	 * @return
+	 * Retorna true si es el turno es de cirulo y false si es X.
+	 * @return <code>Boolean</code>
 	 */
 	public boolean getTurno(){
 		if(controlador.getTurno() == Ficha.CIRCULO)
@@ -67,6 +85,9 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 			return false;
 	}
 
+	/**
+	 * Ajustes al inciar la partida.
+	 */
 	@Override
 	public void iniciarPartida() {
 		Border border = new LineBorder(Color.BLACK, 5);
@@ -81,16 +102,26 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 		
 	}
 
+	/**
+	 * Ajustes al finalizar cada turno.
+	 * 
+	 * @param i - Alto del tablero.
+	 * @param j - Ancho del tablero.
+	 * @param c- El turno, para saber que imagen colocar.
+	 */
 	@Override
 	public void finalizaTurno(int i, int j, boolean c) {
-		if(c){
-			if(getTurno())
-				tableroBtns[i][j].setIcon(tttX);
-			else
-				tableroBtns[i][j].setIcon(tttO);		
-		}		
+
+		if (c)
+			tableroBtns[i][j].setIcon(tttX);
+		else
+			tableroBtns[i][j].setIcon(tttO);
+
 	}
 
+	/**
+	 * Ajustes al finalizar la partida.
+	 */
 	@Override
 	public void finPartida(int n) {
 		// TODO Auto-generated method stub
@@ -101,6 +132,9 @@ public class PanelJuego extends JPanel implements ActionListener, Observador {
 		}
 	}
 
+	/**
+	 * Ajustes al resettear la partida.
+	 */
 	@Override
 	public void resetPartida() {
 		for (int i = 0; i < tam; i++) {

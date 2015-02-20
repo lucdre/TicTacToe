@@ -1,0 +1,9 @@
+Bienvenido a TicTacToe (3 en raya).
+El objetivo del juego es ganar.
+Un jugador gana si consigue tener una línea de tres de sus símbolos: 
+la línea puede ser horizontal, vertical o diagonal.
+Si se llena el tablero y nadie ha ganado, hay un empate.
+¡Mucha suerte y diviertete!
+
+
+Autor: Luca Thiel

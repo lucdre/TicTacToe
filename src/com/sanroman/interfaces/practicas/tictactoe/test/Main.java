@@ -8,6 +8,7 @@ import com.sanroman.interfaces.practicas.tictactoe.vista.PanelJuego;
 import com.sanroman.interfaces.practicas.tictactoe.vista.VentanaPrincipal;
 
 /**
+ * Clase principal para ejecutar el programa.
  * 
  * @author Luca Thiel (Lucdre)
  *

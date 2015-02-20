@@ -1,5 +1,11 @@
 package com.sanroman.interfaces.practicas.tictactoe.modelo;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -32,7 +38,7 @@ public class Partida {
 	/**
 	 * Busca si hay 3 en raya.
 	 * Recorre el {@link Tablero} en horizontal, {@link Tablero} vertical, y las 2 diagonales en busca de 3 {@link Casilla}s iguales.
-	 * @return <code>Boolean</code> si ha encontrado ganador o no
+	 * @return <code>Boolean</code> - si ha encontrado ganador o no.
 	 */
 	public boolean buscarGanador() {
 		
@@ -105,7 +111,7 @@ public class Partida {
 	}
 	
 	/**
-	 * Busca si la {@link Partida} ha empatado (tablero lleno)
+	 * Busca si la {@link Partida} ha empatado (tablero lleno).
 	 */
 	public void buscarEmpate(){
 		
@@ -115,7 +121,7 @@ public class Partida {
 		
 		for (int i = 0; i < tam; i++)
 			for (int j = 0; j < tam; j++)
-				if (tab[i][j] == Casilla.LIBRE)
+				if (tab[i][j] == Casilla.VACIO)
 					empate = false;
 
 		if(empate)
@@ -146,7 +152,7 @@ public class Partida {
 	 */
 	public void colocarFicha(int x, int y){
 		boolean colocada = true;
-		if(tablero.getTablero()[x][y] == Casilla.LIBRE){
+		if(tablero.getTablero()[x][y] == Casilla.VACIO){
 			if(fichaTurno == Ficha.CIRCULO)
 				tablero.getTablero()[x][y] = Casilla.OCUPADA_CIRCULO;
 			else
@@ -155,9 +161,10 @@ public class Partida {
 		}else
 			colocada = false;
 		
-		for (Observador obs : observ) {
-			obs.finalizaTurno(x, y, colocada);
-		}
+		if(colocada)
+			for (Observador obs : observ) {
+				obs.finalizaTurno(x, y, turno);
+			}
 		
 		if(buscarGanador()){
 			for (Observador obs : observ){
@@ -198,10 +205,18 @@ public class Partida {
 		}
 	}
 	
+	/**
+	 * Añade un observador.
+	 * @param o - el observador que se quiere añadir.
+	 */
 	public void addObserv(Observador o){
 		observ.add(o);
 	}
 
+	/**
+	 * Devuelve el turno en forma de {@link Ficha}.
+	 * @return {@link Ficha} - el turno.
+	 */
 	public Ficha getTurno() {
 		return fichaTurno;
 		
@@ -225,7 +240,7 @@ public class Partida {
 					color = "NEGRO";
 				else if(tablero.getTablero()[i][j]==Casilla.OCUPADA_CRUZ)
 					color = "ROJO";
-				else if (tablero.getTablero()[i][j]==Casilla.LIBRE)
+				else if (tablero.getTablero()[i][j]==Casilla.VACIO)
 					color = tablero.getTablero()[i][j].toString();
 				linea[l] = i + " " + j + " " + color;
 				l++;
@@ -243,6 +258,172 @@ public class Partida {
 		return tablero.getTablero().length;
 	}
 	
-	
+	/**
+	 * Método para guardar la {@link Partida} en un fichero de texto.
+	 * Tendrá esta estructura:
+	 * 		- Primera línea: El turno actual.
+	 * 		- Las demás líneas: 
+	 * 			- Primer dato: Alto del {@link Tablero}.	
+	 *			- Segundo dato: Ancho del {@link Tablero}.
+	 *			- Tercer dato: {@link Ficha} que ocupa las posiciones en las coordenadas anteriormente dichas, o si está libre,
+	 * 
+	 * @param fileName - El nombre del archivo (Sin incluir extensión, por defecto se guarda en .txt).
+	 */
+	public void guardar(String fileName) {
+		String[] tablero = getTablero();
+		String turno = "";
+		FileWriter fw = null;
+		if (getTurno() == Ficha.CIRCULO) {
+			turno = "NEGRO";
+		} else {
+			turno = "ROJO";
+		}
+
+		try {
+			fw = new FileWriter(fileName);
+			fw.write(turno + "\r\n");
+			for (int i = 0; i < getTam() * getTam(); i++) {
+				fw.write(tablero[i] + "\r\n");
+			}
+
+		} catch (IOException e) {
+			PanelMensajes.errorMsg(0);
+		} finally {
+			try {
+				if (fw != null)
+					fw.close();
+			} catch (IOException e1) {
+				PanelMensajes.errorMsg(0);
+			}
+		}
+	}
+
+	/**
+	 * Carga la {@link Partida} del fichero del parámetro.
+	 * 
+	 * @param selectedFile - En fichero que se va a cargar.
+	 */
+	public void cargar(File selectedFile) {
+		BufferedReader in = null;
+		String[] lineas = null;
+		boolean seguirComprobando = true;
+		try {
+			in = new BufferedReader(new FileReader(selectedFile));
+			lineas = new String[1+(getTam()*getTam())]; //Por defecto 10 líneas, 1 del turno y 3*3 del tablero
+			String line = null;
+			int i=0; //contador
+			while((line=in.readLine()) != null && seguirComprobando){
+				try{
+					lineas[i] = line.trim();
+					i++;
+				}catch(ArrayIndexOutOfBoundsException e){
+					PanelMensajes.errorMsg(3);
+					seguirComprobando = false;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			PanelMensajes.errorMsg(1);
+		} catch (IOException e) {
+			PanelMensajes.errorMsg(0);
+		}finally{
+			try {
+				if(in!=null)
+					in.close();
+			} catch (IOException e) {
+				PanelMensajes.errorMsg(0);
+			}
+		}
+		
+		if(seguirComprobando){
+			comprobarArchivo(lineas);
+				
+		}
+	}
+
+	/**
+	 * Método necesario para comprobar si los datos cargados del ficheros son válidos o no.
+	 * 
+	 * @param lineas - Los datos cargados del fichero
+	 * @return <code>Boolean</code> - True si son válidos, False si no son válidos.
+	 */
+	private boolean comprobarArchivo(String[] lineas) {
+		// Comprueba que se ha pasado algo, lineas no es null.
+		if (lineas == null) {
+			PanelMensajes.errorMsg(2);
+			return false;
+		}
+		// Comprueba que lineas tenga el número de líneas que debe tener.
+		for (int i = 0; i < 1 + (getTam() * getTam()); i++) {
+			if (lineas[i] == null) {
+				PanelMensajes.errorMsg(2);
+				return false;
+			}
+		}
+		
+		for (Observador obs : observ) {
+			obs.iniciarPartida();
+		}
+		String[] resul;
+		int conRojas = 0;
+		int contNegras = 0;
+		int x = 0;
+		int y = 0;
+		for (int i = 0; i < lineas.length; i++) {
+			resul = lineas[i].split(" ");
+			// Primera linea, comprueba que solo esté el turno.
+			if (i == 0) {
+				switch (resul[0]) {
+				case "ROJO":
+					turno = false;
+					fichaTurno = Ficha.CRUZ;
+					break;
+				case "NEGRO":
+					turno = true;
+					fichaTurno = Ficha.CIRCULO;
+					break;
+				default:
+					PanelMensajes.errorMsg(3);
+					return false;
+				}
+			}
+			else{
+				//Comprobación fichas correctas (solo rojo, negra y libre).
+				x = Integer.valueOf(resul[0]);
+				y = Integer.valueOf(resul[1]);
+				switch(resul[2]){
+				case "NEGRO":
+					contNegras++;
+					for (Observador obs : observ) {
+						obs.finalizaTurno(x, y, false);
+					}
+					break;
+				case "ROJO":
+					conRojas++;
+					for (Observador obs : observ) {
+						obs.finalizaTurno(x, y, true);
+					}
+					break;
+				case "VACIO":
+					tablero.getTablero()[x][y]=Casilla.VACIO;
+					break;
+				default:
+					PanelMensajes.errorMsg(3);
+					reset();
+					return false;
+				}
+			}
+			
+			
+		}
+		//comprobacion fichas correctas (no puede haber 3 fichas negras y una roja por ejemplo).
+		if(contNegras-conRojas>1 || conRojas-contNegras>1){
+			PanelMensajes.errorMsg(3);
+			reset();
+			return false;
+		}
+		return true;
+	}
 
 }
+
+
