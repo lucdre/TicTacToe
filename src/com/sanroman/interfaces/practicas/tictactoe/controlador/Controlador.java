@@ -8,6 +8,8 @@ import com.sanroman.interfaces.practicas.tictactoe.modelo.Partida;
  * @author Luca Thiel (Lucdre)
  *
  */
+
+//TODO JAVADOC
 public class Controlador {
 	
 	private Partida modelo;
@@ -42,6 +44,14 @@ public class Controlador {
 	public void colocarFicha(int x, int y) {
 		modelo.colocarFicha(x, y);
 		
+	}
+
+	public String[] getTablero() {
+		return modelo.getTablero();
+	}
+
+	public int getTam() {
+		return modelo.getTam();
 	}
 
 	
